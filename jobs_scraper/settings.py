@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-m!nexeh%0zk6dav9dykkj)7kud8nd+%tq&6!gr8%!83fq!lh9o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'joshuakiprono.pythonanywhere.com','www.kazisai.co', "https://job-vis.vercel.app, 'https://www.visjobs.com',"]
 
@@ -37,12 +37,6 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 INSTALLED_APPS = [
-    "unfold",  # before django.contrib.admin
-    "unfold.contrib.filters",  # optional, if special filters are needed
-    "unfold.contrib.forms",  # optional, if special form elements are needed
-    "unfold.contrib.import_export",  # optional, if django-import-export package is used
-    "unfold.contrib.guardian",  # optional, if django-guardian package is used
-    "unfold.contrib.simple_history",  # optional, if django-simple-history package is used
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -71,117 +65,6 @@ MIDDLEWARE = [
 from django.templatetags.static import static
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
-
-UNFOLD = {
-    "SITE_TITLE": "ADMIN" ,
-    "SITE_HEADER": None,
-    "SITE_URL": "/admin",
-   # "SITE_ICON": lambda request: static("logo.svg"),
-    "DASHBOARD_CALLBACK": "custom_unfold.dashboard.dashboard_callback",
-    "LOGIN": {
-        "image": lambda r: static("sample/login-bg.jpg"),
-        "redirect_after": lambda r: reverse_lazy("admin:index"),
-    },
-    "STYLES": [
-        lambda request: static("css/style.css"),
-    ],
-    "SCRIPTS": [
-        lambda request: static("js/script.js"),
-    ],
-    "COLORS": {
-        "primary": {
-            "50": "250 245 255",
-            "100": "243 232 255",
-            "200": "233 213 255",
-            "300": "216 180 254",
-            "400": "192 132 252",
-            "500": "168 85 247",
-            "600": "147 51 234",
-            "700": "126 34 206",
-            "800": "107 33 168",
-            "900": "88 28 135",
-        },
-    },
-    "EXTENSIONS": {
-        "modeltranslation": {
-            "flags": {
-                "en": "🇬🇧",
-                "fr": "🇫🇷",
-                "nl": "🇧🇪",
-            },
-        },
-    },
-    "SIDEBAR": {
-        "show_search": True,  # Search in applications and models names
-        "show_all_applications": True,  # Dropdown with all applications and models
-        "navigation": [
-            # {
-            #     "title": _("Dashboard"),
-            #     "separator": True,  # Top border
-            #     "items": [
-            #         {
-            #         "title": _("Dashboard"),
-            #         "icon": "dashboard",  # Supported icon set: https://fonts.google.com/icons
-            #         "link": reverse_lazy("custom_unfold.dashboard.dashboard_callback"),
-            #         "badge": "custom_unfold.dashboard.badge_callback",
-            #         },
-            #     ]
-            # },
-            {
-                "title": _("Authentication and Authorization"),
-                "separator": True,  # Top border
-                "items": [
-                    {
-                        "title": _("Users"),
-                        "icon": "people",
-                        "link": reverse_lazy("admin:auth_user_changelist"),  # Link to Django's built-in User model
-                    },
-                    {
-                        "title": _("Groups"),
-                        "icon": "group", 
-                        "link": reverse_lazy("admin:auth_group_changelist"),  # Link to Django's built-in Group model
-                    },
-                ]
-            },
-            {
-
-                "title": _("Jobs and Reviews"),
-                "separator": True,  # Top border
-                "items": [
-                    {
-                        "title": _("All Admin"),
-                        "icon": "dashboard",  # Supported icon set: https://fonts.google.com/icons
-                        "link": reverse_lazy("admin:index"),
-                    },
-                    {
-                        "title": _("Reviews"),
-                        "icon": "star",
-                       "link": reverse_lazy("admin:jobs_jobreview_changelist")
-                    },
-                    {
-                        "title": _("Jobs"),
-                        "icon": "work",
-                       "link": reverse_lazy("admin:jobs_jobdetail_changelist")
-                    },
-                ],
-            },
-        ],
-    },
-    "TABS": [
-    {
-        "models": [
-            "app_label.jobdetail",  # Replace 'app_label' with the actual app label for JobDetail model
-        ],
-        "items": [
-            {
-                "title": _("Your custom title"),  # Replace with the desired title
-                "link": reverse_lazy("admin:jobs_jobdetail_changelist"),  # Corrected the namespaced URL
-            },
-        ],
-    },
-],
-
-}
 
 ROOT_URLCONF = 'jobs_scraper.urls'
 
